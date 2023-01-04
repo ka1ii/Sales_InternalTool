@@ -1,0 +1,56 @@
+{
+  "configurations": [
+    {
+      "type": "java",
+      "name": "Launch Sales_pipelineApplication",
+      "request": "launch",
+      "mainClass": "kzhang.demo.w22.Sales_pipeline.Sales_pipelineApplication",
+      "projectName": "Sales_pipeline"
+    },
+    {
+      "type": "java",
+      "name": "Launch Sales_pipelineApplication",
+      "request": "launch",
+      "mainClass": "edu.ncsu.csc.Sales_pipeline.Sales_pipelineApplication",
+      "projectName": "Sales_pipeline"
+    },
+    {
+      "type": "java",
+      "name": "Launch Sales_pipelineApplication",
+      "request": "launch",
+      "mainClass": "edu.ncsu.csc.Sales_pipeline.Sales_pipelineApplication",
+      "projectName": "CoffeeMaker"
+    },
+    {
+      "type": "java",
+      "name": "Launch CoffeeMakerApplication",
+      "request": "launch",
+      "mainClass": "edu.ncsu.csc.CoffeeMaker.CoffeeMakerApplication",
+      "projectName": "CoffeeMaker"
+    },
+    {
+      "type": "java",
+      "name": "Launch CoffeeMakerApplication",
+      "request": "launch",
+      "mainClass": "CoffeeMakerApplication",
+      "projectName": "sort_50cc05b1"
+    },
+    {
+      "type": "java",
+      "name": "Launch SortttApplication",
+      "request": "launch",
+      "mainClass": "com.example.kzhang.sorttt.SortttApplication",
+      "projectName": "sorttt"
+    },
+    {
+      "type": "java",
+      "name": "Spring Boot-App<sortt>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "mainClass": "com.kzhang.App",
+      "projectName": "sortt",
+      "args": "",
+      "envFile": "${workspaceFolder}/.env"
+    }
+  ]
+}
