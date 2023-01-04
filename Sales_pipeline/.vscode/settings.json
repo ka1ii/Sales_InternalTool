@@ -1,9 +1,0 @@
-{
-  "java.compile.nullAnalysis.mode": "automatic",
-  "java.project.sourcePaths": [
-    "sorttt",
-    "CoffeeMaker/src/main/java/edu/ncsu/csc/CoffeeMaker"
-  ],
-  "java.configuration.updateBuildConfiguration": "automatic",
-  "java.debug.settings.onBuildFailureProceed": true
-}
