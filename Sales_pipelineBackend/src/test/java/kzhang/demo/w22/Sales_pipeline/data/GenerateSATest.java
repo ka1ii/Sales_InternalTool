@@ -50,10 +50,6 @@ public class GenerateSATest {
         @Autowired
         private GenerateSA gsa;
 
-        private String[] TYPES = { "ACCT_YR", "ACCT_MTH", "ACCOUNT", "CUSTNUM", "CHANID", "RCTRYNUM", "DEPTNUM",
-                        "PRODID",
-                        "CONTRACTNUM", "US_DOLLAR" };
-
         @Test
         @Transactional
         public void testMatchingSubsets() {
@@ -69,6 +65,11 @@ public class GenerateSATest {
 
                 HashSet<Long> set = gsa.matchSubset(transactionS.findById(111));
                 Assert.assertTrue(set.contains((Long) (long) 9));
+        }
+
+        @Test
+        public void testcreatingSA() {
+                gsa.generateAllSellerAchievement();
         }
 
 }

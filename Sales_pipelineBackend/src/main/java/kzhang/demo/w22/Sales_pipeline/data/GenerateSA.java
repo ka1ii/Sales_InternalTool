@@ -44,52 +44,52 @@ public class GenerateSA {
      */
     private boolean matchesRule(Transaction transaction, Terr_subset_rule rule) {
         if (rule.getTerrType().equals("ACCT_YR")) {
-            if (rule.getTerrValue().equals(transaction.getACCT_YR())) {
+            if (rule.getTerrValue().equals(transaction.getAcctyr())) {
                 return true;
             }
             return false;
         } else if (rule.getTerrType().equals("ACCT_MTH")) {
-            if (rule.getTerrValue().equals(transaction.getACCT_MTH())) {
+            if (rule.getTerrValue().equals(transaction.getAcctmth())) {
                 return true;
             }
             return false;
         } else if (rule.getTerrType().equals("ACCOUNT")) {
-            if (rule.getTerrValue().equals(transaction.getACCOUNT())) {
+            if (rule.getTerrValue().equals(transaction.getAccount())) {
                 return true;
             }
             return false;
         } else if (rule.getTerrType().equals("CUSTNUM")) {
-            if (rule.getTerrValue().equals(transaction.getCUSTNUM())) {
+            if (rule.getTerrValue().equals(transaction.getCustnum())) {
                 return true;
             }
             return false;
         } else if (rule.getTerrType().equals("CHANID")) {
-            if (rule.getTerrValue().equals(transaction.getCHANID())) {
+            if (rule.getTerrValue().equals(transaction.getChandid())) {
                 return true;
             }
             return false;
         } else if (rule.getTerrType().equals("RCTRYNUM")) {
-            if (rule.getTerrValue().equals(transaction.getRCTRYNUM())) {
+            if (rule.getTerrValue().equals(transaction.getRctrynum())) {
                 return true;
             }
             return false;
         } else if (rule.getTerrType().equals("DEPTNUM")) {
-            if (rule.getTerrValue().equals(transaction.getDEPTNUM())) {
+            if (rule.getTerrValue().equals(transaction.getDeptnum())) {
                 return true;
             }
             return false;
         } else if (rule.getTerrType().equals("PRODID")) {
-            if (rule.getTerrValue().equals(transaction.getPRODID())) {
+            if (rule.getTerrValue().equals(transaction.getProdid())) {
                 return true;
             }
             return false;
         } else if (rule.getTerrType().equals("CONTRACTNUM")) {
-            if (rule.getTerrValue().equals(transaction.getCONTRACTNUM())) {
+            if (rule.getTerrValue().equals(transaction.getContractnum())) {
                 return true;
             }
             return false;
         } else {
-            if (rule.getTerrValue().equals("" + transaction.getUS_DOLLAR())) {
+            if (rule.getTerrValue().equals("" + transaction.getUsdollar())) {
                 return true;
             }
             return false;
@@ -235,25 +235,37 @@ public class GenerateSA {
         return arr;
     }
 
-    public void generateSellerAchievement() {
+    /**
+     * generates Seller achievements from a single transaction
+     * 
+     * @param transaction
+     */
+    public void generateSellerAchievement(Transaction transaction) {
+        // find all matching subsets for this transaction
+        HashSet<Long> subsets = matchSubset(transaction);
+        // find all matching sets for the matching subsets
+        HashSet<Long> sets = matchSet(subsets);
+        // find all matching sellers for the matching sets
+        ArrayList<Long> sellerIds = matchSellers(sets);
+
+        // with the sellers, create new Seller_achievements and
+        // save it in database
+        for (Long sellerId : sellerIds) {
+            Seller_achievement s = new Seller_achievement(sellerId,
+                    transaction.getTransactionid(),
+                    transaction.getUsdollar());
+            seller_achievementS.save(s);
+        }
+    }
+
+    /**
+     * generates seller achievement from existing transaction database
+     */
+    public void generateAllSellerAchievement() {
         // find all sellers that matches with a given transaction
 
         for (Transaction transaction : transactionS.findAll()) {
-            // find all matching subsets for this transaction
-            HashSet<Long> subsets = matchSubset(transaction);
-            // find all matching sets for the matching subsets
-            HashSet<Long> sets = matchSet(subsets);
-            // find all matching sellers for the matching sets
-            ArrayList<Long> sellerIds = matchSellers(sets);
-
-            // with the sellers, create new Seller_achievements and
-            // save it in database
-            for (Long sellerId : sellerIds) {
-                Seller_achievement s = new Seller_achievement(sellerId,
-                        transaction.getTRANSACTION_ID(),
-                        transaction.getUS_DOLLAR());
-                seller_achievementS.save(s);
-            }
+            generateSellerAchievement(transaction);
         }
     }
 

@@ -10,159 +10,157 @@ public class Transaction extends DomainObject {
 
     @Id
     // transaction id not generated locally
-    private long TRANSACTION_ID;
+    private long transactionid;
 
     // The year of the transaction
-    private String ACCT_YR;
+    private String acctyr;
 
     // the month
-    private String ACCT_MTH;
+    private String acctmth;
 
     // the account
-    private String ACCOUNT;
+    private String account;
 
     // the customer number
-    private String CUSTNUM;
+    private String custnum;
 
     // id
-    private String CHANID;
+    private String chandid;
 
     // country / region number
-    private String RCTRYNUM;
+    private String rctrynum;
 
     // the department number
-    private String DEPTNUM;
+    private String deptnum;
 
     // id of the product sold
-    private String PRODID;
+    private String prodid;
 
     // the contract number
-    private String CONTRACTNUM;
+    private String contractnum;
 
     // the amount sold in USD
-    private double US_DOLLAR;
+    private double usdollar;
 
     // default constructor
     public Transaction() {
         // do nothing
     }
 
-    // constructor
-    public Transaction(long tRANSACTION_ID, String aCCT_YR, String aCCT_MTH, String aCCOUNT,
-            String cUSTNUM, String cHANID, String rCTRYNUM, String dEPTNUM, String pRODID, String cONTRACTNUM,
-            double uS_DOLLAR) {
-        TRANSACTION_ID = tRANSACTION_ID;
-        ACCT_YR = aCCT_YR;
-        ACCT_MTH = aCCT_MTH;
-        ACCOUNT = aCCOUNT;
-        CUSTNUM = cUSTNUM;
-        CHANID = cHANID;
-        RCTRYNUM = rCTRYNUM;
-        DEPTNUM = dEPTNUM;
-        PRODID = pRODID;
-        CONTRACTNUM = cONTRACTNUM;
-        US_DOLLAR = uS_DOLLAR;
+    public Transaction(long transactionid, String acctyr, String acctmth, String account, String custnum,
+            String chandid, String rctrynum, String deptnum, String prodid, String contractnum, double usdollar) {
+        this.transactionid = transactionid;
+        this.acctyr = acctyr;
+        this.acctmth = acctmth;
+        this.account = account;
+        this.custnum = custnum;
+        this.chandid = chandid;
+        this.rctrynum = rctrynum;
+        this.deptnum = deptnum;
+        this.prodid = prodid;
+        this.contractnum = contractnum;
+        this.usdollar = usdollar;
     }
 
-    public Long getTRANSACTION_ID() {
-        return TRANSACTION_ID;
+    public long getTransactionid() {
+        return transactionid;
     }
 
-    public void setTRANSACTION_ID(long tRANSACTION_ID) {
-        TRANSACTION_ID = tRANSACTION_ID;
+    public void setTransactionid(long transactionid) {
+        this.transactionid = transactionid;
     }
 
-    public String getACCT_YR() {
-        return ACCT_YR;
+    public String getAcctyr() {
+        return acctyr;
     }
 
-    public void setACCT_YR(String aCCT_YR) {
-        ACCT_YR = aCCT_YR;
+    public void setAcctyr(String acctyr) {
+        this.acctyr = acctyr;
     }
 
-    public String getACCT_MTH() {
-        return ACCT_MTH;
+    public String getAcctmth() {
+        return acctmth;
     }
 
-    public void setACCT_MTH(String aCCT_MTH) {
-        ACCT_MTH = aCCT_MTH;
+    public void setAcctmth(String acctmth) {
+        this.acctmth = acctmth;
     }
 
-    public String getACCOUNT() {
-        return ACCOUNT;
+    public String getAccount() {
+        return account;
     }
 
-    public void setACCOUNT(String aCCOUNT) {
-        ACCOUNT = aCCOUNT;
+    public void setAccount(String account) {
+        this.account = account;
     }
 
-    public String getCUSTNUM() {
-        return CUSTNUM;
+    public String getCustnum() {
+        return custnum;
     }
 
-    public void setCUSTNUM(String cUSTNUM) {
-        CUSTNUM = cUSTNUM;
+    public void setCustnum(String custnum) {
+        this.custnum = custnum;
     }
 
-    public String getCHANID() {
-        return CHANID;
+    public String getChandid() {
+        return chandid;
     }
 
-    public void setCHANID(String cHANID) {
-        CHANID = cHANID;
+    public void setChandid(String chandid) {
+        this.chandid = chandid;
     }
 
-    public String getRCTRYNUM() {
-        return RCTRYNUM;
+    public String getRctrynum() {
+        return rctrynum;
     }
 
-    public void setRCTRYNUM(String rCTRYNUM) {
-        RCTRYNUM = rCTRYNUM;
+    public void setRctrynum(String rctrynum) {
+        this.rctrynum = rctrynum;
     }
 
-    public String getDEPTNUM() {
-        return DEPTNUM;
+    public String getDeptnum() {
+        return deptnum;
     }
 
-    public void setDEPTNUM(String dEPTNUM) {
-        DEPTNUM = dEPTNUM;
+    public void setDeptnum(String deptnum) {
+        this.deptnum = deptnum;
     }
 
-    public String getPRODID() {
-        return PRODID;
+    public String getProdid() {
+        return prodid;
     }
 
-    public void setPRODID(String pRODID) {
-        PRODID = pRODID;
+    public void setProdid(String prodid) {
+        this.prodid = prodid;
     }
 
-    public String getCONTRACTNUM() {
-        return CONTRACTNUM;
+    public String getContractnum() {
+        return contractnum;
     }
 
-    public void setCONTRACTNUM(String cONTRACTNUM) {
-        CONTRACTNUM = cONTRACTNUM;
+    public void setContractnum(String contractnum) {
+        this.contractnum = contractnum;
     }
 
-    public double getUS_DOLLAR() {
-        return US_DOLLAR;
+    public double getUsdollar() {
+        return usdollar;
     }
 
-    public void setUS_DOLLAR(double uS_DOLLAR) {
-        US_DOLLAR = uS_DOLLAR;
+    public void setUsdollar(double usdollar) {
+        this.usdollar = usdollar;
     }
 
     @Override
     public Serializable getId() {
-        return TRANSACTION_ID;
+        return transactionid;
     }
 
     @Override
     public String toString() {
-        return "Transaction [TRANSACTION_ID=" + TRANSACTION_ID + ", ACCT_YR=" + ACCT_YR + ", ACCT_MTH=" + ACCT_MTH
-                + ", ACCOUNT=" + ACCOUNT + ", CUSTNUM=" + CUSTNUM + ", CHANID=" + CHANID
-                + ", RCTRYNUM=" + RCTRYNUM + ", DEPTNUM=" + DEPTNUM + ", PRODID=" + PRODID + ", CONTRACTNUM="
-                + CONTRACTNUM + ", US_DOLLAR=" + US_DOLLAR + "]";
+        return "Transaction [transactionid=" + transactionid + ", acctyr=" + acctyr + ", acctmth=" + acctmth
+                + ", account=" + account + ", custnum=" + custnum + ", chandid=" + chandid + ", rctrynum=" + rctrynum
+                + ", deptnum=" + deptnum + ", prodid=" + prodid + ", contractnum=" + contractnum + ", usdollar="
+                + usdollar + "]";
     }
 
 }
