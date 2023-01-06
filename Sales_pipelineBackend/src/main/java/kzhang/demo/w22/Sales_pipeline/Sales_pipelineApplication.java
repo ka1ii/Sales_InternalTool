@@ -5,8 +5,9 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
- * Generates the inital table in MySQL
- * To generate Seller_achievements, run GenerateSA in test -> data
+ * To generate Seller_achievements, run GenerateSATest in test -> data
+ * 
+ * api/v1/transactions for continuous seller achievement generation
  */
 @SpringBootApplication(scanBasePackages = { "kzhang.demo.w22.Sales_pipeline" })
 @EnableAutoConfiguration

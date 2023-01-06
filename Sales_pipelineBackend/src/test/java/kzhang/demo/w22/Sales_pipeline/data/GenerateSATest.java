@@ -6,12 +6,10 @@ import javax.transaction.Transactional;
 import org.junit.Assert;
 
 import kzhang.demo.w22.Sales_pipeline.TestConfig;
-import kzhang.demo.w22.Sales_pipeline.data.*;
 import kzhang.demo.w22.Sales_pipeline.models.*;
 import kzhang.demo.w22.Sales_pipeline.services.*;
 
 import org.junit.Test;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -25,27 +23,6 @@ public class GenerateSATest {
 
         @Autowired
         private TransactionServices transactionS;
-
-        // @Autowired
-        // private Terr_subset_ruleService terr_subset_ruleS;
-
-        // @Autowired
-        // private Seller_achievementService seller_achievementS;
-
-        // @Autowired
-        // private Terr_subsetService terr_subsetS;
-
-        // @Autowired
-        // private Terr_set_ruleService terr_set_ruleS;
-
-        // @Autowired
-        // private Terr_setService terr_setS;
-
-        // @Autowired
-        // private Seller_setlinkService seller_setlinkS;
-
-        // @Autowired
-        // private SellerService sellerS;
 
         @Autowired
         private GenerateSA gsa;

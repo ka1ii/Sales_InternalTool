@@ -7,8 +7,6 @@ import java.io.Serializable;
  * methods, but is used to provide a common superclass that the `Service`
  * methods can use.
  *
- * @author Kai Presler-Marshall
- *
  */
 abstract public class DomainObject {
 
