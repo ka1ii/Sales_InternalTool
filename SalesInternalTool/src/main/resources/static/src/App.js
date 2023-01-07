@@ -33,20 +33,6 @@ function App() {
       });
   };
 
-  // const handleDownloadClick = () => {
-  //   fetch("/api/v1/SellerAchievements", {
-  //     method: "GET",
-  //   })
-  //     .then((response) => response.json())
-  //     .then((data) => {
-  //       console.log(data);
-  //     })
-  //     .catch((error) => {
-  //       console.log("here be rror");
-  //       console.error(error);
-  //     });
-  // };
-
   const handleDownloadClick = async () => {
     const response = await fetch("/api/v1/SellerAchievements");
     const blob = await response.blob();
