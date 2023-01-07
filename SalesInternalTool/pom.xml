@@ -10,7 +10,7 @@
 	<groupId>kzhang.demo.w22</groupId>
 	<artifactId>Sales_pipeline</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>Sales_pipeline</name>
+	<name>SalesInternalTool</name>
 	<description>maps transactions to sellers</description>
 
 
