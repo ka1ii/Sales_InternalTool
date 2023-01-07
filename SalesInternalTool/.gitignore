@@ -54,3 +54,6 @@ target/*
 
 # Hibernate configuration with password
 src/main/resources/application.yml
+
+# Node modules 
+src/main/resources/static/node_modules
