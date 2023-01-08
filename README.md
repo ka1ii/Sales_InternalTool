@@ -79,7 +79,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+![Product Name Screen Shot][product-screenshot]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -219,7 +219,7 @@ Project Link: [https://github.com/ka1ii/Sales_InternalTool](https://github.com/k
 [license-url]: https://github.com/ka1ii/Sales_InternalTool/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/kaijun-zhang-5287571b6/
-[product-screenshot]: images/screenshot.png
+[product-screenshot]: https://raw.githubusercontent.com/ka1ii/Sales_InternalTool/2f64cdbf3efa8e554cc2068013c3cd20fe21266c/SalesInternalTool/src/main/resources/static/public/Screen%20Shot%202023-01-07%20at%204.16.09%20PM.png
 [React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
 [React-url]: https://reactjs.org/
 
