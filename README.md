@@ -127,10 +127,11 @@
 
 <!-- USAGE EXAMPLES -->
 ## Usage
+The backend runs on port 8080 <br/>
+The frontend in main/resources/static runs on port 3000
 
 
-
-_For more examples, please refer to the [Documentation](https://example.com)_
+_For detailed business logic and usage conditions [Documentation](https://github.com/ka1ii/Sales_InternalTool/wiki)_
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
