@@ -139,10 +139,8 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 <!-- ROADMAP -->
 ## Roadmap
 
-- [ ] Feature 1
-- [ ] Feature 2
-- [ ] Feature 3
-    - [ ] Nested Feature
+- [x] Intuitive User GUI that allows none technical support team to utilize this internal tool
+- [x] Achieve O(n) run time with one time query at start time; reduced usage of query time allotment.
 
 See the [open issues](https://github.com/ka1ii/Sales_InternalTool/issues) for a full list of proposed features (and known issues).
 
@@ -191,9 +189,7 @@ Project Link: [https://github.com/ka1ii/Sales_InternalTool](https://github.com/k
 <!-- ACKNOWLEDGMENTS -->
 ## Acknowledgments
 
-* []()
-* []()
-* []()
+* @othneildrew for this readme template
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
