@@ -79,7 +79,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+![Product Name Screen Shot][product-screenshot]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -100,32 +100,26 @@
 <!-- GETTING STARTED -->
 ## Getting Started
 
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
-
 ### Prerequisites
 
-This is an example of how to list things you need to use the software and how to install them.
 * npm
   ```sh
   npm install npm@latest -g
   ```
+* Java
+  * version 11
 
 ### Installation
 
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
+1. Clone the repo
    ```sh
    git clone https://github.com/ka1ii/Sales_InternalTool.git
    ```
-3. Install NPM packages
+2. Install NPM packages
    ```sh
    npm install
    ```
-4. Enter your API in `config.js`
-   ```js
-   const API_KEY = 'ENTER YOUR API';
-   ```
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -133,10 +127,11 @@ This is an example of how to list things you need to use the software and how to
 
 <!-- USAGE EXAMPLES -->
 ## Usage
+The backend runs on port 8080 <br/>
+The frontend in main/resources/static runs on port 3000
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
 
-_For more examples, please refer to the [Documentation](https://example.com)_
+_For detailed business logic and usage conditions [Documentation](https://github.com/ka1ii/Sales_InternalTool/wiki)_
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -145,10 +140,8 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 <!-- ROADMAP -->
 ## Roadmap
 
-- [ ] Feature 1
-- [ ] Feature 2
-- [ ] Feature 3
-    - [ ] Nested Feature
+- [x] Intuitive User GUI that allows none technical support team to utilize this internal tool
+- [x] Achieve O(n) run time with one time query at start time; reduced usage of query time allotment.
 
 See the [open issues](https://github.com/ka1ii/Sales_InternalTool/issues) for a full list of proposed features (and known issues).
 
@@ -197,9 +190,7 @@ Project Link: [https://github.com/ka1ii/Sales_InternalTool](https://github.com/k
 <!-- ACKNOWLEDGMENTS -->
 ## Acknowledgments
 
-* []()
-* []()
-* []()
+* @othneildrew for this readme template
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -219,7 +210,7 @@ Project Link: [https://github.com/ka1ii/Sales_InternalTool](https://github.com/k
 [license-url]: https://github.com/ka1ii/Sales_InternalTool/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/kaijun-zhang-5287571b6/
-[product-screenshot]: images/screenshot.png
+[product-screenshot]: https://raw.githubusercontent.com/ka1ii/Sales_InternalTool/2f64cdbf3efa8e554cc2068013c3cd20fe21266c/SalesInternalTool/src/main/resources/static/public/Screen%20Shot%202023-01-07%20at%204.16.09%20PM.png
 [React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
 [React-url]: https://reactjs.org/
 
