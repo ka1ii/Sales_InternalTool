@@ -6,6 +6,7 @@ import javax.transaction.Transactional;
 import org.junit.Assert;
 
 import kzhang.demo.w22.Sales_pipeline.TestConfig;
+import kzhang.demo.w22.Sales_pipeline.data.localizedDatabase.Pair;
 import kzhang.demo.w22.Sales_pipeline.models.*;
 import kzhang.demo.w22.Sales_pipeline.services.*;
 
@@ -27,6 +28,9 @@ public class GenerateSATest {
         @Autowired
         private GenerateSA gsa;
 
+        @Autowired
+        private localizedDatabase lbase;
+
         @Test
         @Transactional
         public void testMatchingSubsets() {
@@ -47,6 +51,68 @@ public class GenerateSATest {
         @Test
         public void testcreatingSA() {
                 gsa.generateAllSellerAchievement();
+        }
+
+        @Test
+        public void testMatchingSubsets2() {
+                Transaction t1 = transactionS.findById(1);
+                HashSet<Long> set = gsa.matchSubset(t1);
+                for (Long i : set) {
+                        System.out.println(i);
+                }
+        }
+
+        @Test
+        public void testMatchingSets2() {
+                HashSet<Long> set = new HashSet<>();
+                set.add((Long) (long) 1);
+                set.add((Long) (long) 3);
+                HashSet<Long> set2 = gsa.matchSet(set);
+                for (Long i : set2) {
+                        System.out.println(i);
+                }
+        }
+
+        @Test
+        public void testMatchingSellerlinks2() {
+                HashSet<Long> set = new HashSet<>();
+                set.add((Long) (long) 1);
+                set.add((Long) (long) 4);
+                ArrayList<Long> set2 = gsa.matchSellers(set);
+                for (Long i : set2) {
+                        System.out.println(i);
+                }
+        }
+
+        @Test
+        public void testcreatinglocalizedDatabase() {
+                // int i = 0;
+                // HashMap<Character, ArrayList<Long>>[] arry = lbase.getSellerLinkMapList();
+                // for (HashMap<Character, ArrayList<Long>> map : arry) {
+                // System.out.println(i);
+                // for (Character terr_type : map.keySet()) {
+                // System.out.print(terr_type);
+                // for (Long pair : map.get(terr_type)) {
+                // System.out.print("" + pair);
+                // }
+                // System.out.println();
+                // }
+                // i++;
+                // }
+
+                int j = 0;
+                HashMap<Character, ArrayList<Long>>[] arry2 = lbase.getSetRuleMapList();
+                for (HashMap<Character, ArrayList<Long>> map : arry2) {
+                        System.out.println(j);
+                        for (Character terr_type : map.keySet()) {
+                                System.out.print(terr_type);
+                                for (Long pair : map.get(terr_type)) {
+                                        System.out.print("" + pair);
+                                }
+                                System.out.println();
+                        }
+                        j++;
+                }
         }
 
 }
