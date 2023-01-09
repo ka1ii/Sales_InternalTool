@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.stereotype.Component;
 
+import kzhang.demo.w22.Sales_pipeline.data.localizedDatabase.Pair;
 import kzhang.demo.w22.Sales_pipeline.models.*;
 import kzhang.demo.w22.Sales_pipeline.services.*;
 
@@ -14,25 +15,16 @@ import kzhang.demo.w22.Sales_pipeline.services.*;
 public class GenerateSA {
 
     @Autowired
-    private TransactionServices transactionS;
+    private localizedDatabase db;
 
     @Autowired
-    private Terr_subset_ruleService terr_subset_ruleS;
+    private TransactionServices transactionS;
 
     @Autowired
     private Seller_achievementService seller_achievementS;
 
-    @Autowired
-    private Terr_set_ruleService terr_set_ruleS;
-
-    @Autowired
-    private Seller_setlinkService seller_setlinkS;
-
-    private String[] TYPES = { "ACCT_YR", "ACCT_MTH", "ACCOUNT", "CUSTNUM", "CHANID", "RCTRYNUM", "DEPTNUM",
-            "PRODID",
-            "CONTRACTNUM", "US_DOLLAR" };
-
     public GenerateSA() {
+
     }
 
     /**
@@ -42,54 +34,54 @@ public class GenerateSA {
      * @param rule        corresponding rule
      * @return true if matches
      */
-    private boolean matchesRule(Transaction transaction, Terr_subset_rule rule) {
-        if (rule.getTerrType().equals("ACCT_YR")) {
-            if (rule.getTerrValue().equals(transaction.getAcctyr())) {
+    private boolean matchesRule(Transaction transaction, String terr_type, String terr_val) {
+        if (terr_type.equals("ACCT_YR")) {
+            if (terr_val.equals(transaction.getAcctyr())) {
                 return true;
             }
             return false;
-        } else if (rule.getTerrType().equals("ACCT_MTH")) {
-            if (rule.getTerrValue().equals(transaction.getAcctmth())) {
+        } else if (terr_type.equals("ACCT_MTH")) {
+            if (terr_val.equals(transaction.getAcctmth())) {
                 return true;
             }
             return false;
-        } else if (rule.getTerrType().equals("ACCOUNT")) {
-            if (rule.getTerrValue().equals(transaction.getAccount())) {
+        } else if (terr_type.equals("ACCOUNT")) {
+            if (terr_val.equals(transaction.getAccount())) {
                 return true;
             }
             return false;
-        } else if (rule.getTerrType().equals("CUSTNUM")) {
-            if (rule.getTerrValue().equals(transaction.getCustnum())) {
+        } else if (terr_type.equals("CUSTNUM")) {
+            if (terr_val.equals(transaction.getCustnum())) {
                 return true;
             }
             return false;
-        } else if (rule.getTerrType().equals("CHANID")) {
-            if (rule.getTerrValue().equals(transaction.getChandid())) {
+        } else if (terr_type.equals("CHANID")) {
+            if (terr_val.equals(transaction.getChandid())) {
                 return true;
             }
             return false;
-        } else if (rule.getTerrType().equals("RCTRYNUM")) {
-            if (rule.getTerrValue().equals(transaction.getRctrynum())) {
+        } else if (terr_type.equals("RCTRYNUM")) {
+            if (terr_val.equals(transaction.getRctrynum())) {
                 return true;
             }
             return false;
-        } else if (rule.getTerrType().equals("DEPTNUM")) {
-            if (rule.getTerrValue().equals(transaction.getDeptnum())) {
+        } else if (terr_type.equals("DEPTNUM")) {
+            if (terr_val.equals(transaction.getDeptnum())) {
                 return true;
             }
             return false;
-        } else if (rule.getTerrType().equals("PRODID")) {
-            if (rule.getTerrValue().equals(transaction.getProdid())) {
+        } else if (terr_type.equals("PRODID")) {
+            if (terr_val.equals(transaction.getProdid())) {
                 return true;
             }
             return false;
-        } else if (rule.getTerrType().equals("CONTRACTNUM")) {
-            if (rule.getTerrValue().equals(transaction.getContractnum())) {
+        } else if (terr_type.equals("CONTRACTNUM")) {
+            if (terr_val.equals(transaction.getContractnum())) {
                 return true;
             }
             return false;
         } else {
-            if (rule.getTerrValue().equals("" + transaction.getUsdollar())) {
+            if (terr_val.equals("" + transaction.getUsdollar())) {
                 return true;
             }
             return false;
@@ -104,20 +96,21 @@ public class GenerateSA {
      */
     public ArrayList<Long> matchSellers(HashSet<Long> set) {
         ArrayList<Long> arr = new ArrayList<>();
-        // max id of the sellers
-        int sellerNum = seller_setlinkS.max();
+        HashMap<Character, ArrayList<Long>>[] sellerlinks = db.getSellerLinkMapList();
         // iterate through all the seller_setlinks
-        for (int i = 0; i <= sellerNum; i++) {
+        for (int i = 1; i < sellerlinks.length; i++) {
             int matchedAllRules = 0;
             // all 'A' InclExclIndc rule must match
-            for (Seller_setlink rule : seller_setlinkS.findBySellerIdAndInclExclIndc(i, 'A')) {
-                if (set.contains(rule.getSetId())) {
-                    matchedAllRules = 1;
-                } else {
-                    // break once finding a non-matching rule
-                    // the set does not match
-                    matchedAllRules = -1;
-                    break;
+            if (sellerlinks[i].get('A') != null) {
+                for (Long sellerId : sellerlinks[i].get('A')) {
+                    if (set.contains(sellerId)) {
+                        matchedAllRules = 1;
+                    } else {
+                        // break once finding a non-matching rule
+                        // the set does not match
+                        matchedAllRules = -1;
+                        break;
+                    }
                 }
             }
             // if not 'A' rules match, continue to the next set
@@ -127,11 +120,13 @@ public class GenerateSA {
             }
 
             // only one 'O' InclExclIndc rule need to match
-            for (Seller_setlink rule : seller_setlinkS.findBySellerIdAndInclExclIndc(i, 'O')) {
-                if (set.contains(rule.getSetId())) {
-                    // exit after finding one matching rule
-                    matchedAllRules = 1;
-                    break;
+            if (sellerlinks[i].get('O') != null) {
+                for (Long sellerId : sellerlinks[i].get('O')) {
+                    if (set.contains(sellerId)) {
+                        // exit after finding one matching rule
+                        matchedAllRules = 1;
+                        break;
+                    }
                 }
             }
             // case if didn't match any 'O' rule nor 'A' rules
@@ -153,19 +148,22 @@ public class GenerateSA {
      */
     public HashSet<Long> matchSet(HashSet<Long> subset) {
         HashSet<Long> sets = new HashSet<>();
-        int setNum = terr_set_ruleS.max();
+        HashMap<Character, ArrayList<Long>>[] setList = db.getSetRuleMapList();
         // iterate through all sets
-        for (int i = 1; i <= setNum; i++) {
+        for (int i = 1; i < setList.length; i++) {
             int matchedAllRules = 0;
             // all 'A' InclExclIndc rule must match
-            for (Terr_set_rule rule : terr_set_ruleS.findBySetIdAndInclExclIndc(i, 'A')) {
-                if (subset.contains(rule.getSubsetId())) {
-                    matchedAllRules = 1;
-                } else {
-                    // break once finding a non-matching rule
-                    // the set does not match
-                    matchedAllRules = -1;
-                    break;
+            if (setList[i].get('A') != null) {
+                for (Long subsetId : setList[i].get('A')) {
+                    System.out.println(i);
+                    if (subset.contains(subsetId)) {
+                        matchedAllRules = 1;
+                    } else {
+                        // break once finding a non-matching rule
+                        // the set does not match
+                        matchedAllRules = -1;
+                        break;
+                    }
                 }
             }
             // if not 'A' rules match, continue to the next set
@@ -175,11 +173,13 @@ public class GenerateSA {
             }
 
             // only one 'O' InclExclIndc rule need to match
-            for (Terr_set_rule rule : terr_set_ruleS.findBySetIdAndInclExclIndc(i, 'O')) {
-                if (subset.contains(rule.getSubsetId())) {
-                    // exit after finding one matching rule
-                    matchedAllRules = 1;
-                    break;
+            if (setList[i].get('O') != null) {
+                for (Long subsetId : setList[i].get('O')) {
+                    if (subset.contains(subsetId)) {
+                        // exit after finding one matching rule
+                        matchedAllRules = 1;
+                        break;
+                    }
                 }
             }
             // case if didn't match any 'O' rule nor 'A' rules
@@ -201,19 +201,18 @@ public class GenerateSA {
      */
     public HashSet<Long> matchSubset(Transaction transaction) {
         HashSet<Long> arr = new HashSet<>();
-        int setNum = terr_subset_ruleS.max();
-        for (int i = 1; i <= setNum; i++) {
+        HashMap<String, ArrayList<Pair<String, Character>>>[] subsetRules = db.getSubsetRuleMapList();
+        for (int i = 1; i < subsetRules.length; i++) {
             // must match one of every terrType
             boolean matchedAllTypes = false;
-            for (int j = 0; j < TYPES.length; j++) {
-                // iterate through every terrType within given subsetId, skip if null
-                if (terr_subset_ruleS.findBySubsetIdAndTerrType(i, TYPES[j]).size() == 0) {
-                    continue;
-                }
+
+            // iterate through all the rules for a particular terr type
+            for (String type : subsetRules[i].keySet()) {
+
                 // must find a match within each subset
                 boolean matchedCurType = false;
-                for (Terr_subset_rule rule : terr_subset_ruleS.findBySubsetIdAndTerrType(i, TYPES[j])) {
-                    if (matchesRule(transaction, rule) && rule.getInclExclIndc() == 'I') {
+                for (Pair<String, Character> pair : subsetRules[i].get(type)) {
+                    if (matchesRule(transaction, type, pair.first) && pair.second == 'I') {
                         matchedCurType = true;
                         break;
                     }
@@ -227,7 +226,6 @@ public class GenerateSA {
                 matchedAllTypes = true;
             }
             if (matchedAllTypes) {
-                System.out.println(i);
                 arr.add((Long) (long) i);
             }
         }
